@@ -6,6 +6,10 @@
 [![Crates.io](https://img.shields.io/crates/v/symscope.svg)](https://crates.io/crates/symscope)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
+<p align="center">
+  <img src="docs/demo.gif" alt="symscope demo — def, callers, and call graphs in the terminal" width="800">
+</p>
+
 `grep` finds text. `symscope` understands code. It parses your repository with
 [tree-sitter](https://tree-sitter.github.io/) and answers the questions you
 actually ask while reading code:
