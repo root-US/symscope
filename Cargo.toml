@@ -2,7 +2,7 @@
 name = "codenav"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.74"
+rust-version = "1.85"
 authors = ["Papa Gora Samb"]
 description = "Fast, local code navigation: find definitions, references, and call graphs across your repo — powered by tree-sitter. No index server, no LLM."
 documentation = "https://github.com/root-US/codenav"

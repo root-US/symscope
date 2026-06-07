@@ -23,7 +23,7 @@ machine.
 ## Quickstart (30 seconds)
 
 ```bash
-# Install (Rust 1.74+)
+# Install (Rust 1.85+)
 cargo install codenav
 
 # From the root of any repo:
