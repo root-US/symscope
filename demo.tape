@@ -31,12 +31,7 @@ Sleep 400ms
 Enter
 Sleep 2s
 
-Type "symscope graph build --depth 3"
+Type "symscope graph render --depth 2"
 Sleep 400ms
 Enter
-Sleep 3s
-
-Type "symscope graph build --format mermaid"
-Sleep 400ms
-Enter
-Sleep 3s
+Sleep 3500ms        # tree — let this be the lasting frame
