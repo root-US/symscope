@@ -1,0 +1,49 @@
+[package]
+name = "codenav"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+authors = ["Papa Gora Samb"]
+description = "Fast, local code navigation: find definitions, references, and call graphs across your repo — powered by tree-sitter. No index server, no LLM."
+documentation = "https://github.com/root-US/codenav"
+homepage = "https://github.com/root-US/codenav"
+repository = "https://github.com/root-US/codenav"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+keywords = ["cli", "code-search", "tree-sitter", "navigation", "developer-tools"]
+categories = ["command-line-utilities", "development-tools"]
+exclude = ["/.github", "/examples", "/tests/fixtures"]
+
+[[bin]]
+name = "cn"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+ignore = "0.4"                 # gitignore-aware parallel directory walking (from ripgrep)
+rayon = "1.10"                 # data parallelism across files
+anyhow = "1.0"                 # ergonomic error handling
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+crossterm = "0.27"             # terminal colors, cross-platform
+
+# tree-sitter core + a pinned, mutually-compatible set of grammars.
+# These versions are known to compile against tree-sitter 0.22.
+tree-sitter = "0.22"
+tree-sitter-rust = "0.21"
+tree-sitter-python = "0.21"
+tree-sitter-javascript = "0.21"
+tree-sitter-typescript = "0.21"
+tree-sitter-go = "0.21"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "3.1"
+tempfile = "3.10"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+panic = "abort"
