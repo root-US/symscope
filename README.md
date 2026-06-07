@@ -7,7 +7,7 @@
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
 <p align="center">
-  <img src="docs/demo.gif" alt="symscope demo — def, callers, and call graphs in the terminal" width="800">
+  <img src="https://raw.githubusercontent.com/root-US/symscope/main/docs/demo.gif" alt="symscope demo — def, callers, and call graphs in the terminal" width="800">
 </p>
 
 `grep` finds text. `symscope` understands code. It parses your repository with
