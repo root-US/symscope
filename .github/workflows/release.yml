@@ -20,7 +20,7 @@ jobs:
           - { os: macos-latest,   target: x86_64-apple-darwin }
           - { os: windows-latest, target: x86_64-pc-windows-msvc }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
@@ -33,7 +33,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           Compress-Archive -Path target/${{ matrix.target }}/release/cn.exe -DestinationPath cn-${{ matrix.target }}.zip
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: |
             cn-${{ matrix.target }}.tar.gz
