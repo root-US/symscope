@@ -1,19 +1,19 @@
-# codenav (`cn`)
+# symscope
 
 **Fast, local code navigation — find definitions, references, and callers across your whole repo in milliseconds. No index server. No LLM. No network.**
 
-[![CI](https://github.com/root-US/codenav/actions/workflows/ci.yml/badge.svg)](https://github.com/root-US/codenav/actions/workflows/ci.yml)
-[![Crates.io](https://img.shields.io/crates/v/codenav.svg)](https://crates.io/crates/codenav)
+[![CI](https://github.com/root-US/symscope/actions/workflows/ci.yml/badge.svg)](https://github.com/root-US/symscope/actions/workflows/ci.yml)
+[![Crates.io](https://img.shields.io/crates/v/symscope.svg)](https://crates.io/crates/symscope)
 [![License: MIT OR Apache-2.0](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
 
-`grep` finds text. `codenav` understands code. It parses your repository with
+`grep` finds text. `symscope` understands code. It parses your repository with
 [tree-sitter](https://tree-sitter.github.io/) and answers the questions you
 actually ask while reading code:
 
-- **Where is this defined?** &nbsp;`cn def handleRequest`
-- **Where is it used?** &nbsp;`cn refs handleRequest`
-- **Who calls this function?** &nbsp;`cn callers handleRequest`
-- **What's the call graph?** &nbsp;`cn graph handleRequest`
+- **Where is this defined?** &nbsp;`symscope def handleRequest`
+- **Where is it used?** &nbsp;`symscope refs handleRequest`
+- **Who calls this function?** &nbsp;`symscope callers handleRequest`
+- **What's the call graph?** &nbsp;`symscope graph handleRequest`
 
 It walks your tree in parallel, respects `.gitignore`, and runs entirely on your
 machine.
@@ -24,33 +24,33 @@ machine.
 
 ```bash
 # Install (Rust 1.85+)
-cargo install codenav
+cargo install symscope
 
 # From the root of any repo:
-cn def parse_config        # where is parse_config defined?
-cn callers parse_config    # every place that calls it
-cn refs   parse_config     # defs + calls together
-cn graph  parse_config     # call graph rooted at parse_config
-cn stats                   # what does cn see in this repo?
+symscope def parse_config        # where is parse_config defined?
+symscope callers parse_config    # every place that calls it
+symscope refs   parse_config     # defs + calls together
+symscope graph  parse_config     # call graph rooted at parse_config
+symscope stats                   # what does symscope see in this repo?
 ```
 
 Pipe structured output anywhere:
 
 ```bash
-cn callers parse_config --json | jq '.[].file' | sort -u
+symscope callers parse_config --json | jq '.[].file' | sort -u
 ```
 
 ## Call graphs
 
-`cn graph` traces what a function calls (or, with `--callers`, who calls it),
+`symscope graph` traces what a function calls (or, with `--callers`, who calls it),
 to any depth, and renders it three ways:
 
 ```bash
-cn graph parse_config                      # indented tree (default)
-cn graph parse_config --callers            # invert: who reaches this function
-cn graph parse_config --depth 5            # go deeper
-cn graph parse_config --format mermaid     # paste into Markdown / GitHub
-cn graph parse_config --format dot | dot -Tsvg > graph.svg
+symscope graph parse_config                      # indented tree (default)
+symscope graph parse_config --callers            # invert: who reaches this function
+symscope graph parse_config --depth 5            # go deeper
+symscope graph parse_config --format mermaid     # paste into Markdown / GitHub
+symscope graph parse_config --format dot | dot -Tsvg > graph.svg
 ```
 
 Tree output looks like:
@@ -68,23 +68,23 @@ Cycles are detected and marked rather than looping forever.
 
 ## Why not just grep / ripgrep?
 
-`ripgrep` is wonderful and `codenav` is not trying to replace it. The difference
+`ripgrep` is wonderful and `symscope` is not trying to replace it. The difference
 is **structure**:
 
-| Question | `grep`/`rg` | `codenav` |
+| Question | `grep`/`rg` | `symscope` |
 |---|---|---|
 | Find the text "parse" | ✅ great | not its job |
 | Find where `parse()` is **defined** | ✗ matches comments, strings, calls | ✅ definition sites only |
 | Find who **calls** `parse()` | ✗ can't tell a call from a mention | ✅ call sites only |
 
-Because it parses real syntax trees, `cn` ignores matches inside comments and
+Because it parses real syntax trees, `symscope` ignores matches inside comments and
 strings, and it distinguishes a function *definition* from a *call* from a
 *mention*.
 
 ## Why not an LSP or my IDE?
 
 Language servers are powerful but heavy: per-language setup, a running daemon,
-editor integration. `codenav` is a single static binary you run in any repo,
+editor integration. `symscope` is a single static binary you run in any repo,
 in any language it supports, with zero configuration — ideal for CI, scripts,
 code review, and quick spelunking in unfamiliar code.
 
@@ -103,22 +103,22 @@ queries in [`src/lang.rs`](src/lang.rs). PRs welcome.
 
 ```bash
 # From crates.io
-cargo install codenav
+cargo install symscope
 
 # From source
-git clone https://github.com/root-US/codenav
-cd codenav
+git clone https://github.com/root-US/symscope
+cd symscope
 cargo install --path .
 ```
 
-The binary is named `cn`.
+The binary is named `symscope`.
 
 ---
 
 ## Usage
 
 ```
-cn <COMMAND> [SYMBOL] [OPTIONS]
+symscope <COMMAND> [SYMBOL] [OPTIONS]
 
 Commands:
   def      Find where SYMBOL is defined
@@ -144,10 +144,10 @@ Graph options:
 
 ## Roadmap
 
-`codenav` is built as a fast Rust core with an ecosystem around it:
+`symscope` is built as a fast Rust core with an ecosystem around it:
 
 - [x] **v0.1** — Rust core: `def`, `refs`, `callers`, `graph`, `stats` across 5 languages
-- [ ] **v0.2** — Python bindings via [PyO3](https://pyo3.rs/) (`pip install codenav`)
+- [ ] **v0.2** — Python bindings via [PyO3](https://pyo3.rs/) (`pip install symscope`)
 - [ ] **v0.3** — VS Code extension (inline callers, jump-to-def fallback)
 - [ ] **v0.4** — Structural diff between two git revisions
 - [ ] more languages (Java, C/C++, Ruby, C#)

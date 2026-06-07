@@ -1,4 +1,4 @@
-# Contributing to codenav
+# Contributing to symscope
 
 Thanks for your interest! Contributions of all kinds are welcome.
 

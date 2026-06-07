@@ -1,13 +1,13 @@
 [package]
-name = "codenav"
+name = "symscope"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"
 authors = ["Papa Gora Samb"]
 description = "Fast, local code navigation: find definitions, references, and call graphs across your repo — powered by tree-sitter. No index server, no LLM."
-documentation = "https://github.com/root-US/codenav"
-homepage = "https://github.com/root-US/codenav"
-repository = "https://github.com/root-US/codenav"
+documentation = "https://github.com/root-US/symscope"
+homepage = "https://github.com/root-US/symscope"
+repository = "https://github.com/root-US/symscope"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 keywords = ["cli", "code-search", "tree-sitter", "navigation", "developer-tools"]
@@ -15,7 +15,7 @@ categories = ["command-line-utilities", "development-tools"]
 exclude = ["/.github", "/examples", "/tests/fixtures"]
 
 [[bin]]
-name = "cn"
+name = "symscope"
 path = "src/main.rs"
 
 [dependencies]

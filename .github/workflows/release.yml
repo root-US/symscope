@@ -28,13 +28,13 @@ jobs:
       - name: Package (unix)
         if: runner.os != 'Windows'
         run: |
-          tar -czf cn-${{ matrix.target }}.tar.gz -C target/${{ matrix.target }}/release cn
+          tar -czf symscope-${{ matrix.target }}.tar.gz -C target/${{ matrix.target }}/release symscope
       - name: Package (windows)
         if: runner.os == 'Windows'
         run: |
-          Compress-Archive -Path target/${{ matrix.target }}/release/cn.exe -DestinationPath cn-${{ matrix.target }}.zip
+          Compress-Archive -Path target/${{ matrix.target }}/release/symscope.exe -DestinationPath symscope-${{ matrix.target }}.zip
       - uses: softprops/action-gh-release@v3
         with:
           files: |
-            cn-${{ matrix.target }}.tar.gz
-            cn-${{ matrix.target }}.zip
+            symscope-${{ matrix.target }}.tar.gz
+            symscope-${{ matrix.target }}.zip

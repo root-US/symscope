@@ -1,10 +1,10 @@
-//! codenav (`cn`) — fast, local code navigation.
+//! symscope — fast, local code navigation.
 //!
 //! Subcommands:
-//!   cn def    <name>   Find where a symbol is defined.
-//!   cn refs   <name>   Find every reference (defs + calls) to a symbol.
-//!   cn callers <name>  Find every call site of a function/method.
-//!   cn stats           Summary of the codebase the index sees.
+//!   symscope def     <name>  Find where a symbol is defined.
+//!   symscope refs    <name>  Find every reference (defs + calls) to a symbol.
+//!   symscope callers <name>  Find every call site of a function/method.
+//!   symscope stats           Summary of the codebase the index sees.
 
 mod graph;
 mod index;
@@ -20,10 +20,10 @@ use std::io::stdout;
 
 #[derive(Parser)]
 #[command(
-    name = "cn",
+    name = "symscope",
     version,
     about = "Fast, local code navigation powered by tree-sitter.",
-    long_about = "codenav (cn) answers structural questions about a codebase \
+    long_about = "symscope answers structural questions about a codebase \
                   instantly and locally: where a symbol is defined, every place \
                   it is referenced, and every site that calls a function. \
                   No index server, no LLM, no network."
